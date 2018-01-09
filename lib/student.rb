@@ -80,6 +80,12 @@ class Student
   end
 
   def self.first_X_students_in_grade_10(x)
-  
+    sql = <<-SQL
+      SELECT COUNT(name)
+      FROM students
+      WHERE grade = 10
+      LIMIT ?
+    SQL
+    DB[:conn].execute(sql, x)
   end
 end
